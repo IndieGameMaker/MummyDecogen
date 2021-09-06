@@ -42,6 +42,10 @@ public class MummyAgent : Agent
     // 환경을 관측해서 브레인에 전달 (수치 데이터를 관측)
     public override void CollectObservations(VectorSensor sensor)
     {
+        sensor.AddObservation(tr.localPosition);        // 3
+        sensor.AddObservation(targetTr.localPosition);  // 3
+        sensor.AddObservation(rb.velocity.x);           // 1
+        sensor.AddObservation(rb.velocity.z);           // 1
     }
 
     // 브레인으로 부터 전달 받은 명령(Policy)에 따라 행동하는 메소드 (FixedUpdate)
