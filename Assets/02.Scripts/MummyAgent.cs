@@ -18,6 +18,13 @@ public class MummyAgent : Agent
     private Transform tr;
     private Transform targetTr;
 
+    // Floor의 MeshRenderer
+    private Renderer renderer;
+    private Material originMt;
+
+    public Material goodMt;
+    public Material baddMt;
+
     // 에이전트의 초기화
     public override void Initialize()
     {
