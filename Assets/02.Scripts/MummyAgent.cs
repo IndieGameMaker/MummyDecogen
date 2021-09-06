@@ -23,7 +23,7 @@ public class MummyAgent : Agent
     private Material originMt;
 
     public Material goodMt;
-    public Material baddMt;
+    public Material badMt;
 
     // 에이전트의 초기화
     public override void Initialize()
