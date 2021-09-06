@@ -51,13 +51,22 @@ public class MummyAgent : Agent
     // 브레인으로 부터 전달 받은 명령(Policy)에 따라 행동하는 메소드 (FixedUpdate)
     public override void OnActionReceived(ActionBuffers actions)
     {
+        var action = actions.ContinuousActions;
 
+        Debug.Log($"action[0]={action[0]}, action[1]={action[1]}");
     }
 
     // 개발자 테스트용, 모방학습을 위한 메소드
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+        var actions = actionsOut.ContinuousActions;
+        // Input.GetAxis("Horizontal")  => -1.0f ~ 0.0f ~ +1.0f  Continuous (연속)
+        // Input.GetAxisRaw("Horizontal") => -1.0f, 0.0f, +1.0f  Discrete (이산)
 
+        // 전/후진 W/S/Up/Down
+        actions[0] = Input.GetAxis("Vertical"); // -1.0f ~ 0.0f ~ +1.0f
+        // 좌/우 A/D/Left/Right
+        actions[1] = Input.GetAxis("Horizontal"); // -1.0f ~ 0.0f ~ +1.0f
     }
 
 
