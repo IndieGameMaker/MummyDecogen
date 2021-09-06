@@ -53,7 +53,16 @@ public class MummyAgent : Agent
     {
         var action = actions.ContinuousActions;
 
-        Debug.Log($"action[0]={action[0]}, action[1]={action[1]}");
+        float v = Mathf.Clamp(action[0], -1.0f, 1.0f); //전/후진
+        float h = Mathf.Clamp(action[1], -1.0f, 1.0f); //좌/우
+
+        Vector3 dir = (Vector3.forward * v) + (Vector3.right * h);
+        rb.AddForce(dir.normalized * 50.0f);
+
+        // 지속적인 움직임(행동)을 유도하기 위한 마이너스 패널티
+        SetReward(-0.001f);
+
+        //Debug.Log($"action[0]={action[0]}, action[1]={action[1]}");
     }
 
     // 개발자 테스트용, 모방학습을 위한 메소드
