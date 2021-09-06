@@ -31,6 +31,8 @@ public class MummyAgent : Agent
         rb = GetComponent<Rigidbody>();
         tr = GetComponent<Transform>();
         targetTr = tr.parent.Find("Target").transform;
+        renderer = tr.parent.Find("Floor").GetComponent<MeshRenderer>();
+        originMt = renderer.material;
     }
 
     // 에피소드(학습, 트레이닝)가 시작할 때마다 호출
