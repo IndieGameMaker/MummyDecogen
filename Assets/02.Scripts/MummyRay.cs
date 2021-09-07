@@ -44,7 +44,28 @@ public class MummyRay : Agent
     public override void OnActionReceived(ActionBuffers actions)
     {
         var action = actions.DiscreteActions;
-        Debug.Log($"[0]={action[0]}, [1]={action[1]}");
+        //Debug.Log($"[0]={action[0]}, [1]={action[1]}");
+
+        Vector3 dir = Vector3.zero;
+        Vector3 rot = Vector3.zero;
+
+        // Branch 0
+        switch (action[0])
+        {
+            case 1: dir = tr.forward; break;
+            case 2: dir = -tr.forward; break;
+        }
+        // Branch 1
+        switch (action[1])
+        {
+            case 1: rot = -tr.up; break;
+            case 2: rot = tr.up; break;
+        }
+
+        // 이동 및 회전처리
+
+
+
     }
 
     /*
