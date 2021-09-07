@@ -43,7 +43,8 @@ public class MummyRay : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-
+        var action = actions.DiscreteActions;
+        Debug.Log($"[0]={action[0]}, [1]={action[1]}");
     }
 
     /*
@@ -55,5 +56,25 @@ public class MummyRay : Agent
     {
         var actions = actionsOut.DiscreteActions;
         actions.Clear(); // 배열을 모두 0으로 초기화
+
+        // Branch 0 - 이동 (정지/전진/후진) 0, 1, 2 : size 3
+        if (Input.GetKey(KeyCode.W))
+        {
+            actions[0] = 1;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            actions[0] = 2;
+        }
+
+        // Branch 1 - 회전 (정지/왼쪽/오른쪽) 0, 1, 2 : size 3
+        if (Input.GetKey(KeyCode.A))
+        {
+            actions[1] = 1; //왼쪽 회전
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            actions[1] = 2; //오른쪽 회전
+        }
     }
 }
