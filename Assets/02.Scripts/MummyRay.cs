@@ -63,9 +63,11 @@ public class MummyRay : Agent
         }
 
         // 이동 및 회전처리
+        tr.Rotate(rot, Time.fixedDeltaTime * turnSpeed);
+        rb.AddForce(dir * moveSpeed, ForceMode.VelocityChange);
 
-
-
+        // 지속적인 이동을 유도하기 위한 마이너스 패널티
+        AddReward(-1 / (float)MaxStep); // -1/5000 = -0.005f
     }
 
     /*
