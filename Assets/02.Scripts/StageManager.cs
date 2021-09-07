@@ -30,13 +30,29 @@ public class StageManager : MonoBehaviour
         goodList.Clear();
         badList.Clear();
 
+        // GoodItem 생성
+        MakeItem(goodList, goodItem, goodItemCount);
 
+        // BadItem 생성
+        MakeItem(badList, badItem, badItemCount);
+    }
+
+    void MakeItem(List<GameObject> itemList, GameObject item, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            // 불규칙한 위치좌표와 회전값을 생성
+            Vector3 pos = new Vector3(Random.Range(-22.0f, 22.0f), 0.05f, Random.Range(-22.0f, 22.0f));
+            Quaternion rot = Quaternion.Euler(Vector3.up * Random.Range(0, 360));
+
+            itemList.Add(Instantiate(item, transform.position + pos, rot, transform));
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        InitStage();
     }
 
     // Update is called once per frame
